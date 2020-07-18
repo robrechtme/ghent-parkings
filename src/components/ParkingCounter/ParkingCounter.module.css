@@ -1,0 +1,16 @@
+.ParkingCounter {
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+.green {
+    color: var(--green);
+}
+
+.red {
+    color: var(--red);
+}
+
+.orange {
+    color: var(--orange);
+}

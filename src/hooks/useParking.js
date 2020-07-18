@@ -1,12 +1,12 @@
 import useSWR from 'swr';
-
-const fetcher = (...args) => fetch(...args).then(res => res.json());
+import fetcher from '../api/fetcher';
 
 const useParking = (id) => {
-  const { data, error } = useSWR(`${process.env.REACT_APP_API}&q=&facet=description&refine.id=${id}`, fetcher);
+  const { data, error, isValidating } = useSWR(`${process.env.REACT_APP_API}&q=&facet=description&refine.id=${id}`, fetcher);
   return {
     parking: data && data.records[0],
     isLoading: !error && !data,
+    isValidating,
     isError: error,
   };
 };

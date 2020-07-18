@@ -1,0 +1,27 @@
+.Details {
+    padding: 1rem;
+}
+
+.backButton {
+    color: white;
+    text-decoration: none;
+}
+
+.backButtonIcon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    padding: 0.3em;
+    border-radius: 50%;
+    transition: all 300ms ease-in;
+}
+
+.backButton:hover .backButtonIcon {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

@@ -3,11 +3,30 @@
     background: white;
     box-shadow: var(--shadow-1);
     padding: 1rem;
-    margin: 1rem;
-    justify-content: space-between;
+    display: flex;
+    min-width: 400px;
+    position: relative;
 }
 
 .header {
     font-weight: 700;
     margin: 0 0 0.5rem;
+}
+
+.content {
+    flex-grow: 1;
+    white-space: pre-line;
+}
+
+.label {
+    font-size: 0.5em;
+    text-transform: uppercase;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: var(--green);
+    color: white;
+    padding: 0.3rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
 }
