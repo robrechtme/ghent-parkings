@@ -1,0 +1,13 @@
+.card {
+    color: black;
+    background: white;
+    box-shadow: var(--shadow-1);
+    padding: 1rem;
+    margin: 1rem;
+    justify-content: space-between;
+}
+
+.header {
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+}

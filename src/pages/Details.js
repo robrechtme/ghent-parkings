@@ -1,22 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { fetchData } from '../api/parking';
-import { ParkingCard } from '../components/ParkingCard';
+import styles from './Details.module.css';
+import Card from '../components/Card/Card';
+import useParking from '../hooks/useParking';
+import Spinner from '../components/Spinner/Spinner';
 
 const Details = ({ match }) => {
   const { id } = match.params;
-  const [data, setData] = useState();
-
-  useEffect(() => {
-    fetchData(id)
-      .then(response => setData(response.records[0]));
-  }, [id]);
+  const { parking, isLoading, isError } = useParking(id);
 
   return (
-    <div>
+    <div className={styles.container}>
       <Link to="/">&lt; Back</Link>
       <h1>Details</h1>
-      {data && <ParkingCard record={data} />}
+      {isError && <span>Something went wrong.</span>}
+      {isLoading && <Spinner />}
+      {!isLoading && !isError && (
+      <Card>
+        <Card.Header>{parking.fields.name}</Card.Header>
+        <div>{parking.fields.address}</div>
+        <div>{parking.fields.contactinfo}</div>
+        <div>{parking.fields.newopeningtimes}</div>
+      </Card>
+      )}
+
     </div>
   );
 };

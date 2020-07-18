@@ -1,0 +1,50 @@
+.card {
+    color: black;
+    background: white;
+    box-shadow: var(--shadow-1);
+    padding: 1rem;
+    margin: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header {
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+}
+
+.capacity {
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+.green {
+    color: var(--green);
+}
+
+.red {
+    color: var(--red);
+}
+
+.orange {
+    color: var(--orange);
+}
+
+.parkButton,
+.parkButton:focus {
+    background: var(--blue);
+    padding: 0.5em 0.8em;
+    margin: 1rem 0 0;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    box-shadow: var(--shadow-1);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.parkButton:hover {
+    box-shadow: var(--shadow-2);
+}

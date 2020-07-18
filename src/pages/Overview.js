@@ -1,15 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { ParkingCard } from '../components/ParkingCard';
-import { fetchData } from '../api/parking';
+import React, { useState } from 'react';
+import { ParkingCard } from '../components/ParkingCard/ParkingCard';
+import useParkings from '../hooks/useParkings';
+import Spinner from '../components/Spinner/Spinner';
 
 const Overview = () => {
-  const [data, setData] = useState([]);
   const [parkedId, setParkedId] = useState(null);
-
-  useEffect(() => {
-    fetchData()
-      .then(response => setData(response.records));
-  }, []);
+  const { parkings, isLoading, isError } = useParkings();
 
   const toggleParkedId = (id) => {
     if (parkedId === id) {
@@ -20,8 +16,13 @@ const Overview = () => {
   };
 
   return (
-    <div className="App">
-      {data.map(record => <ParkingCard record={record} parkedId={parkedId} toggleParkedId={toggleParkedId} />)}
+    <div className="Parkings">
+      <h1>Parkings</h1>
+      <div className="container">
+        {isError && <span>Something went wrong.</span>}
+        {isLoading && <Spinner />}
+        {!isLoading && !isError && parkings.map(record => <ParkingCard record={record} parkedId={parkedId} toggleParkedId={toggleParkedId} />)}
+      </div>
     </div>
   );
 };

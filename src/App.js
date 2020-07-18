@@ -5,7 +5,7 @@ import Details from './pages/Details';
 
 const App = () => {
   return (
-    <HashRouter basename="/">
+    <HashRouter>
       <Route exact path="/" component={Overview} />
       <Route path="/:id" component={Details} />
     </HashRouter>
