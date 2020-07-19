@@ -36,7 +36,7 @@ const Details = ({ match }: RouteComponentProps<DetailRouterProps>): React.React
         </div>
         {error && <ErrorMessage error={error} />}
         {!isLoading && !error && (
-          <Card>
+          <Card className={styles.detailsCard}>
             <Card.Content>
               <Card.ContentHeader>{parking.fields.name}</Card.ContentHeader>
               <h4>Address</h4>

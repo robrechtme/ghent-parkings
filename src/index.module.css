@@ -4,10 +4,10 @@
 
 html,
 body {
-    background: var(--accent);
-    color: white;
-    font-family: var(--font-family);
-    font-weight: 300;
-    text-rendering: optimizeLegibility;
-    font-size: 100%;
+  background: var(--accent);
+  color: white;
+  font-family: var(--font-family);
+  font-weight: var(--text-regular);
+  text-rendering: optimizeLegibility;
+  font-size: 100%;
 }
