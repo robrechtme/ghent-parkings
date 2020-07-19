@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, RouteComponentProps } from 'react-router-dom';
 import styles from './Details.module.css';
 import Card from '../../components/Card/Card';
 import useParking from '../../hooks/useParking';
@@ -10,22 +10,29 @@ import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import Layout from '../../components/Layout/Layout';
 import { weekdays } from '../../constants/weekdays';
 
-const Details = ({ match }) => {
-  const { id } = match.params;
-  const { parking, isLoading, isError, isValidating } = useParking(id);
+type DetailRouterProps = {
+  id: string;
+};
 
-  const openingtimes = !isLoading && !isError ? JSON.parse(parking.fields.newopeningtimes) : null;
+const Details = ({ match }: RouteComponentProps<DetailRouterProps>): React.ReactElement => {
+  const { id } = match.params;
+  const { data: parking, isLoading, error, isValidating } = useParking(id);
+
+  const openingtimes = !isLoading && !error ? JSON.parse(parking.fields.newopeningtimes) : null;
   return (
     <Layout>
       <Link to="/" className={styles.backButton}>
-        <span className={styles.backButtonIcon}><Back /></span> Back
+        <span className={styles.backButtonIcon}>
+          <Back />
+        </span>{' '}
+        Back
       </Link>
       <div className={styles.header}>
-        <h1>Parkings {!isLoading && !isError && `- ${parking.fields.name}`}</h1>
+        <h1>Parkings {!isLoading && !error && `- ${parking.fields.name}`}</h1>
         {isValidating && <Spinner />}
       </div>
-      {isError && <ErrorMessage error={isError} />}
-      {!isLoading && !isError && (
+      {error && <ErrorMessage error={error} />}
+      {!isLoading && !error && (
         <Card>
           <Card.Content>
             <Card.ContentHeader>{parking.fields.name}</Card.ContentHeader>
@@ -36,10 +43,12 @@ const Details = ({ match }) => {
             <h4>Opening hours</h4>
             <table>
               <tbody>
-                {openingtimes.days.map(day => (
+                {openingtimes.days.map((day: string) => (
                   <tr key={day}>
                     <th>{weekdays[day]}</th>
-                    <td>{openingtimes.from} - {openingtimes.to}</td>
+                    <td>
+                      {openingtimes.from} - {openingtimes.to}
+                    </td>
                   </tr>
                 ))}
               </tbody>

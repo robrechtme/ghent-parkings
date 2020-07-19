@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, ReactElement } from 'react';
 import { sortBy } from 'lodash-es';
 import ParkingCard from './_partials/ParkingCard/ParkingCard';
 import useParkings from '../../hooks/useParkings';
@@ -7,13 +7,13 @@ import styles from './Overview.module.css';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import Layout from '../../components/Layout/Layout';
 
-const Overview = () => {
-  const [parkedId, setParkedId] = useState(null);
-  const { parkings, isLoading, isError, isValidating } = useParkings();
+const Overview: React.FC = (): ReactElement => {
+  const [parkedId, setParkedId] = useState<number | undefined>();
+  const { data: parkings, isLoading, error, isValidating } = useParkings();
 
-  const toggleParkedId = (id) => {
+  const toggleParkedId = (id: number | undefined) => {
     if (parkedId === id) {
-      setParkedId(null);
+      setParkedId(undefined);
     } else {
       setParkedId(id);
     }
@@ -25,9 +25,10 @@ const Overview = () => {
         <h1>Parkings</h1>
         {isValidating && <Spinner />}
       </div>
-      {isError && <ErrorMessage error={isError} />}
-      {!isLoading && !isError
-        && sortBy(parkings, 'fields.name').map(record => (
+      {error && <ErrorMessage error={error} />}
+      {!isLoading &&
+        !error &&
+        sortBy(parkings, 'fields.name').map((record) => (
           <ParkingCard
             key={record.fields.id}
             parking={record.fields}
@@ -35,7 +36,6 @@ const Overview = () => {
             toggleParkedId={toggleParkedId}
           />
         ))}
-
     </Layout>
   );
 };

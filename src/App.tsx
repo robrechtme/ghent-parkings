@@ -3,7 +3,7 @@ import { HashRouter, Route } from 'react-router-dom';
 import Overview from './pages/Overview/Overview';
 import Details from './pages/Details/Details';
 
-const App = () => {
+const App = (): React.ReactElement => {
   return (
     <HashRouter>
       <Route exact path="/" component={Overview} />

@@ -1,4 +1,4 @@
-export const weekdays = {
+export const weekdays: { [key: string]: string } = {
   MONDAY: 'Mo',
   TUESDAY: 'Tu',
   WEDNESDAY: 'We',
