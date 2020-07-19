@@ -1,16 +1,27 @@
 .ParkingCounter {
-    font-size: 1.5em;
-    font-weight: 500;
+  text-align: right;
+}
+
+.legend {
+  font-size: 0.5em;
+  opacity: 0.8;
+  font-weight: 300;
+  margin-top: 0.3em;
+}
+
+.counter {
+  font-size: 1em;
+  font-weight: 500;
 }
 
 .green {
-    color: var(--green);
+  color: var(--green);
 }
 
 .red {
-    color: var(--red);
+  color: var(--red);
 }
 
 .orange {
-    color: var(--orange);
+  color: var(--orange);
 }

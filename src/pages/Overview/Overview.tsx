@@ -6,6 +6,7 @@ import Spinner from '../../components/Spinner/Spinner';
 import styles from './Overview.module.css';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import Layout from '../../components/Layout/Layout';
+import DocumentTitle from 'react-document-title';
 
 const Overview: React.FC = (): ReactElement => {
   const [parkedId, setParkedId] = useState<number | undefined>();
@@ -20,23 +21,25 @@ const Overview: React.FC = (): ReactElement => {
   };
 
   return (
-    <Layout>
-      <div className={styles.header}>
-        <h1>Parkings</h1>
-        {isValidating && <Spinner />}
-      </div>
-      {error && <ErrorMessage error={error} />}
-      {!isLoading &&
-        !error &&
-        sortBy(parkings, 'fields.name').map((record) => (
-          <ParkingCard
-            key={record.fields.id}
-            parking={record.fields}
-            parkedId={parkedId}
-            toggleParkedId={toggleParkedId}
-          />
-        ))}
-    </Layout>
+    <DocumentTitle title="Ghent Parkings">
+      <Layout>
+        <div className={styles.header}>
+          <h1>Parkings</h1>
+          {isValidating && <Spinner />}
+        </div>
+        {error && <ErrorMessage error={error} />}
+        {!isLoading &&
+          !error &&
+          sortBy(parkings, 'fields.name').map((record) => (
+            <ParkingCard
+              key={record.fields.id}
+              parking={record.fields}
+              parkedId={parkedId}
+              toggleParkedId={toggleParkedId}
+            />
+          ))}
+      </Layout>
+    </DocumentTitle>
   );
 };
 
