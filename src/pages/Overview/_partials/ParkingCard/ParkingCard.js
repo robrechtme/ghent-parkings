@@ -1,17 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './ParkingCard.module.css';
-import Card from '../Card/Card';
-import ParkingCounter from '../ParkingCounter/ParkingCounter';
+import Card from '../../../../components/Card/Card';
+import ParkingCounter from '../../../../components/ParkingCounter/ParkingCounter';
 
 const ParkingCard = ({ parking, parkedId, toggleParkedId }) => {
   return (
     <Card className={styles.ParkingCard}>
       {parkedId === parking.id && <Card.Label>You parked here</Card.Label>}
       <Card.Content>
-        <Card.Header className={styles.header}>
+        <Card.ContentHeader className={styles.header}>
           {parking.name}
-        </Card.Header>
+        </Card.ContentHeader>
         <p>{parking.address}</p>
         <div>
           <Link to={`/${parking.id}`}>Details</Link>

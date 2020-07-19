@@ -1,7 +1,3 @@
-.Details {
-    padding: 1rem;
-}
-
 .backButton {
     color: white;
     text-decoration: none;
@@ -24,4 +20,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+td,
+th {
+    padding: 0 1rem;
+    text-align: left;
 }

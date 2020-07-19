@@ -10,7 +10,7 @@ const Card = ({ children, className }) => {
   );
 };
 
-Card.Header = ({ children }) => {
+Card.ContentHeader = ({ children }) => {
   return <h3 className={styles.header}>{children}</h3>;
 };
 Card.Content = ({ children }) => {
