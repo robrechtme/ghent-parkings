@@ -2,12 +2,13 @@ import React from 'react';
 import styles from './ParkingCounter.module.css';
 import cx from 'classnames';
 
-type ParkingCounterProps = {
+type Props = {
   available: number;
   total: number;
 };
 
-const ParkingCounter = ({ available, total }: ParkingCounterProps): React.ReactElement => {
+const ParkingCounter: React.FC<Props> = ({ available, total }) => {
+  // Set color based on availability ratio
   const ratio = available / total;
   let className;
   if (ratio > 0.5) {

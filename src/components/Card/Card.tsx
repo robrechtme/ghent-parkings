@@ -2,31 +2,36 @@ import React from 'react';
 import cx from 'classnames';
 import styles from './Card.module.css';
 
-type CardProps = {
-  children: React.ReactNode;
+type Props = {
   className?: string;
 };
 
-type CardSubcomponents = {
-  Content: React.FC<CardProps>;
-  ContentHeader: React.FC<CardProps>;
-  Aside: React.FC<CardProps>;
-  Label: React.FC<CardProps>;
+type Subcomponents = {
+  Content: React.FC<Props>;
+  ContentHeader: React.FC<Props>;
+  Aside: React.FC<Props>;
+  Label: React.FC<Props>;
 };
 
-const Card: React.FC<CardProps> & CardSubcomponents = ({ children, className }: CardProps): React.ReactElement => (
+const Card: React.FC<Props> & Subcomponents = ({ children, className }) => (
   <div className={cx(styles.card, className)}>{children}</div>
 );
 
-const Content = ({ children, className }: CardProps) => <div className={cx(styles.content, className)}>{children}</div>;
+const Content: React.FC<Props> = ({ children, className }) => (
+  <div className={cx(styles.content, className)}>{children}</div>
+);
 
-const ContentHeader = ({ children, className }: CardProps) => (
+const ContentHeader: React.FC<Props> = ({ children, className }) => (
   <h3 className={cx(styles.header, className)}>{children}</h3>
 );
 
-const Aside = ({ children, className }: CardProps) => <div className={cx(styles.aside, className)}>{children}</div>;
+const Aside: React.FC<Props> = ({ children, className }) => (
+  <div className={cx(styles.aside, className)}>{children}</div>
+);
 
-const Label = ({ children, className }: CardProps) => <div className={cx(styles.label, className)}>{children}</div>;
+const Label: React.FC<Props> = ({ children, className }) => (
+  <div className={cx(styles.label, className)}>{children}</div>
+);
 
 Card.Content = Content;
 Card.ContentHeader = ContentHeader;

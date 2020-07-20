@@ -1,42 +1,40 @@
 import React from 'react';
-import { Link, RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router-dom';
 import styles from './Details.module.css';
 import Card from '../../components/Card/Card';
-import useParking from '../../hooks/useParking';
-import Spinner from '../../components/Spinner/Spinner';
+import useParkings from '../../hooks/useParkings';
 import ParkingCounter from '../../components/ParkingCounter/ParkingCounter';
-import { ReactComponent as Back } from '../../assets/back.svg';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import Layout from '../../components/Layout/Layout';
-import { weekdays } from '../../constants/weekdays';
+import { WEEKDAYS } from '../../constants/weekdays';
 import DocumentTitle from 'react-document-title';
+import ErrorPage from '../ErrorPage/ErrorPage';
+import HeaderWithSpinner from '../../components/HeaderWithSpinner/HeaderWithSpinner';
 
-type DetailRouterProps = {
+type Props = {
   id: string;
 };
 
-const Details = ({ match }: RouteComponentProps<DetailRouterProps>): React.ReactElement => {
+const Details: React.FC<RouteComponentProps<Props>> = ({ match }) => {
   const { id } = match.params;
-  const { data: parking, isLoading, error, isValidating } = useParking(id);
+  const { data, isLoading, error, isValidating } = useParkings(id);
+  const parking = data && data[0];
+
+  if (!isLoading && !error && !parking) {
+    return <ErrorPage message={`This page does not exist. (Parking with id "${id}" not found.)`} />;
+  }
 
   const title = !isLoading && !error ? `${parking.fields.name} | Ghent Parkings` : 'Ghent Parkings';
   const openingtimes = !isLoading && !error ? JSON.parse(parking.fields.newopeningtimes) : null;
   return (
     <DocumentTitle title={title}>
-      <Layout>
-        <Link to="/" className={styles.backButton}>
-          <span className={styles.backButtonIcon}>
-            <Back />
-          </span>{' '}
-          Back
-        </Link>
-        <div className={styles.header}>
-          <h1>Parkings {!isLoading && !error && `- ${parking.fields.name}`}</h1>
-          {isValidating && <Spinner />}
-        </div>
+      <Layout backButtonURL="/">
+        <HeaderWithSpinner loading={isValidating}>
+          Parkings {!isLoading && !error && `- ${parking.fields.name}`}
+        </HeaderWithSpinner>
         {error && <ErrorMessage error={error} />}
         {!isLoading && !error && (
-          <Card className={styles.detailsCard}>
+          <Card className={styles.card}>
             <Card.Content>
               <Card.ContentHeader>{parking.fields.name}</Card.ContentHeader>
               <h4>Address</h4>
@@ -48,7 +46,7 @@ const Details = ({ match }: RouteComponentProps<DetailRouterProps>): React.React
                 <tbody>
                   {openingtimes.days.map((day: string) => (
                     <tr key={day}>
-                      <th>{weekdays[day]}</th>
+                      <th>{WEEKDAYS[day]}</th>
                       <td>
                         {openingtimes.from} - {openingtimes.to}
                       </td>

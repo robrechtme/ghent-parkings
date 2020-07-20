@@ -1,6 +1,24 @@
 .container {
-    padding: 1rem;
-    max-width: 1000px;
-    min-width: 300px;
-    margin: auto;
+  padding: 1rem;
+  max-width: 1000px;
+  min-width: 300px;
+  margin: auto;
+}
+
+.backButton {
+  color: white;
+  text-decoration: none;
+}
+.backButtonIcon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  padding: 0.3em;
+  margin-right: 0.2em;
+  border-radius: 50%;
+  transition: all 300ms ease-in;
+}
+
+.backButton:hover .backButtonIcon {
+  background: rgba(255, 255, 255, 0.2);
 }
