@@ -22,7 +22,7 @@ const ParkingCard: React.FC<Props> = ({ parking, parkedId, toggleParkedId }) => 
           <Link to={`/p/${parking.id}`}>Details</Link>
         </div>
         <button className={styles.parkButton} type="button" onClick={() => toggleParkedId(parking.id)}>
-          Park
+          {parkedId === parking.id ? 'Clear' : 'Park'}
         </button>
       </Card.Content>
       <Card.Aside className={styles.capacity}>

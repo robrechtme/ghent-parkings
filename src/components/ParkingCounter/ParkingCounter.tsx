@@ -11,9 +11,9 @@ const ParkingCounter: React.FC<Props> = ({ available, total }) => {
   // Set color based on availability ratio
   const ratio = available / total;
   let className;
-  if (ratio > 0.5) {
+  if (ratio >= 0.5) {
     className = styles.green;
-  } else if (ratio > 0.1) {
+  } else if (ratio >= 0.1) {
     className = styles.orange;
   } else {
     className = styles.red;
