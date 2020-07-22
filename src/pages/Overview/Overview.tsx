@@ -24,7 +24,7 @@ const Overview: React.FC<RouteComponentProps> = () => {
     <DocumentTitle title="Ghent Parkings">
       <Layout>
         <HeaderWithSpinner loading={isValidating}>Parkings</HeaderWithSpinner>
-        {error && <ErrorMessage error={error} />}
+        {error && <ErrorMessage details={error.toString()} />}
         {!isLoading &&
           !error &&
           sortBy(parkings, 'fields.name').map((record) => (

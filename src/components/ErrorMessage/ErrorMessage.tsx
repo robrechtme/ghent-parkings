@@ -1,17 +1,23 @@
 import React from 'react';
 
 type Props = {
-  error: Error;
+  message?: React.ReactNode;
+  details?: React.ReactNode;
 };
 
-const ErrorMessage: React.FC<Props> = ({ error }) => {
+const ErrorMessage: React.FC<Props> = ({
+  message = 'Something went wrong... Please try again by refreshing the page.',
+  details,
+}) => {
   return (
     <div>
-      Something went wrong... Please try again by refreshing the page.
-      <details>
-        <summary>Details</summary>
-        <p>{error.toString()}</p>
-      </details>
+      <p>{message}</p>
+      {details && (
+        <details>
+          <summary>Details</summary>
+          <p>{details}</p>
+        </details>
+      )}
     </div>
   );
 };

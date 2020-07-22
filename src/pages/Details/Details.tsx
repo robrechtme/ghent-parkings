@@ -21,7 +21,7 @@ const Details: React.FC<RouteComponentProps<Props>> = ({ match }) => {
   const parking = data && data[0];
 
   if (!isLoading && !error && !parking) {
-    return <ErrorPage message={`This page does not exist. (Parking with id "${id}" not found.)`} />;
+    return <ErrorPage message="This page does not exist." details={`Parking with id "${id}" not found.`} />;
   }
 
   const title = !isLoading && !error ? `${parking.fields.name} | Ghent Parkings` : 'Ghent Parkings';
@@ -32,7 +32,7 @@ const Details: React.FC<RouteComponentProps<Props>> = ({ match }) => {
         <HeaderWithSpinner loading={isValidating}>
           Parkings {!isLoading && !error && `- ${parking.fields.name}`}
         </HeaderWithSpinner>
-        {error && <ErrorMessage error={error} />}
+        {error && <ErrorMessage details={error.toString()} />}
         {!isLoading && !error && (
           <Card className={styles.card}>
             <Card.Content>
