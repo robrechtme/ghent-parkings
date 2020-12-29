@@ -4,6 +4,7 @@
   box-shadow: var(--shadow-1);
   padding: 1rem;
   display: flex;
+  flex-wrap: wrap;
   position: relative;
 }
 
@@ -28,4 +29,8 @@
   padding: 0.3rem;
   font-weight: var(--text-semibold);
   letter-spacing: 0.2em;
+}
+
+.aside {
+  flex-grow: 1;
 }

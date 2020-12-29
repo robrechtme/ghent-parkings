@@ -10,4 +10,7 @@ export type Parking = {
 
 export type ParkingRecord = {
   fields: Parking;
+  geometry: {
+    coordinates: [number, number];
+  };
 };

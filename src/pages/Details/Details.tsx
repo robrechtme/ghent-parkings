@@ -1,6 +1,8 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import DocumentTitle from 'react-document-title';
+import { MapContainer, Marker, TileLayer } from 'react-leaflet';
+import L from 'leaflet';
 import styles from './Details.module.css';
 import Card from '../../components/Card/Card';
 import useParkings from '../../hooks/useParkings';
@@ -10,6 +12,7 @@ import Layout from '../../components/Layout/Layout';
 import WEEKDAYS from '../../constants/weekdays';
 import ErrorPage from '../ErrorPage/ErrorPage';
 import HeaderWithSpinner from '../../components/HeaderWithSpinner/HeaderWithSpinner';
+import getCapacityColor from '../../helpers/capacityColor';
 
 type Props = {
   id: string;
@@ -68,6 +71,21 @@ const Details: React.FC<RouteComponentProps<Props>> = ({ match }) => {
                 available={parking.fields.availablecapacity}
                 total={parking.fields.totalcapacity_test}
               />
+              <MapContainer className={styles.mapContainer} center={[parking.geometry.coordinates[1], parking.geometry.coordinates[0]]} zoom={16}>
+                <TileLayer
+                  attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                <Marker
+                  position={[parking.geometry.coordinates[1], parking.geometry.coordinates[0]]}
+                  icon={L.icon({
+                    iconUrl: `/marker-${getCapacityColor(parking.fields.availablecapacity / parking.fields.totalcapacity_test)}.svg`,
+                    iconSize: [36, 36],
+                    iconAnchor: [18, 36],
+                    popupAnchor: [0, -36],
+                  })}
+                />
+              </MapContainer>
             </Card.Aside>
           </Card>
         )}

@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import styles from './ParkingCounter.module.css';
+import getCapacityColor from '../../helpers/capacityColor';
 
 type Props = {
   available: number;
@@ -9,18 +10,11 @@ type Props = {
 
 const ParkingCounter: React.FC<Props> = ({ available, total }) => {
   // Set color based on availability ratio
-  const ratio = available / total;
-  let className;
-  if (ratio >= 0.5) {
-    className = styles.green;
-  } else if (ratio >= 0.1) {
-    className = styles.orange;
-  } else {
-    className = styles.red;
-  }
+  const color = getCapacityColor(available / total);
+
   return (
     <div className={styles.ParkingCounter}>
-      <span className={cx(className, styles.counter)}>{available}</span>
+      <span className={cx(styles[color], styles.counter)}>{available}</span>
       {' '}
       /
       {total}
