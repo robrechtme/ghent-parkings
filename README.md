@@ -2,7 +2,7 @@
 
 Visualization of realtime parking data of Ghent. The parking data is openly available in the [Open Data Portal](https://data.stad.gent/) of City of Ghent.
 
-https://parkinggent.vercel.app/
+<p align="center">https://parkinggent.vercel.app/ </p>
 
 ![Screenshot of the website showing a list of parkings with their number of available spaces](screenshot.png)
 
