@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { sortBy } from 'lodash-es';
 import ParkingCard from './_partials/ParkingCard/ParkingCard';
 import useParkings from '../../hooks/useParkings';
@@ -9,17 +9,7 @@ import HeaderWithSpinner from '../../components/HeaderWithSpinner/HeaderWithSpin
 import { RouteComponentProps } from 'react-router-dom';
 
 const Overview: React.FC<RouteComponentProps> = () => {
-  const [parkedId, setParkedId] = useState<number | undefined>();
   const { data: parkings, isLoading, error, isValidating } = useParkings();
-
-  const toggleParkedId = (id: number | undefined) => {
-    if (parkedId === id) {
-      setParkedId(undefined);
-    } else {
-      setParkedId(id);
-    }
-  };
-
   return (
     <DocumentTitle title="Ghent Parkings">
       <Layout>
@@ -28,12 +18,7 @@ const Overview: React.FC<RouteComponentProps> = () => {
         {!isLoading &&
           !error &&
           sortBy(parkings, 'fields.name').map((record) => (
-            <ParkingCard
-              key={record.fields.id}
-              parking={record.fields}
-              parkedId={parkedId}
-              toggleParkedId={toggleParkedId}
-            />
+            <ParkingCard key={record.fields.id} parking={record.fields} />
           ))}
       </Layout>
     </DocumentTitle>
