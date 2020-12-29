@@ -1,4 +1,4 @@
-const getCapacityColor = (ratio: number) => {
+const getCapacityColor = (ratio: number): 'green' | 'red' | 'orange' => {
   if (ratio >= 0.5) {
     return 'green';
   } if (ratio >= 0.1) {
