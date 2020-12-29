@@ -1,13 +1,13 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
+import DocumentTitle from 'react-document-title';
 import styles from './Details.module.css';
 import Card from '../../components/Card/Card';
 import useParkings from '../../hooks/useParkings';
 import ParkingCounter from '../../components/ParkingCounter/ParkingCounter';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import Layout from '../../components/Layout/Layout';
-import { WEEKDAYS } from '../../constants/weekdays';
-import DocumentTitle from 'react-document-title';
+import WEEKDAYS from '../../constants/weekdays';
 import ErrorPage from '../ErrorPage/ErrorPage';
 import HeaderWithSpinner from '../../components/HeaderWithSpinner/HeaderWithSpinner';
 
@@ -17,7 +17,9 @@ type Props = {
 
 const Details: React.FC<RouteComponentProps<Props>> = ({ match }) => {
   const { id } = match.params;
-  const { data, isLoading, error, isValidating } = useParkings(id);
+  const {
+    data, isLoading, error, isValidating,
+  } = useParkings(id);
   const parking = data && data[0];
 
   if (!isLoading && !error && !parking) {
@@ -30,7 +32,9 @@ const Details: React.FC<RouteComponentProps<Props>> = ({ match }) => {
     <DocumentTitle title={title}>
       <Layout backButtonURL="/">
         <HeaderWithSpinner loading={isValidating}>
-          Parkings {!isLoading && !error && `- ${parking.fields.name}`}
+          Parkings
+          {' '}
+          {!isLoading && !error && `- ${parking.fields.name}`}
         </HeaderWithSpinner>
         {error && <ErrorMessage details={error.toString()} />}
         {!isLoading && !error && (
@@ -48,7 +52,10 @@ const Details: React.FC<RouteComponentProps<Props>> = ({ match }) => {
                     <tr key={day}>
                       <th>{WEEKDAYS[day]}</th>
                       <td>
-                        {openingtimes.from} - {openingtimes.to}
+                        {openingtimes.from}
+                        {' '}
+                        -
+                        {openingtimes.to}
                       </td>
                     </tr>
                   ))}
@@ -57,7 +64,10 @@ const Details: React.FC<RouteComponentProps<Props>> = ({ match }) => {
               <div />
             </Card.Content>
             <Card.Aside>
-              <ParkingCounter available={parking.fields.availablecapacity} total={parking.fields.totalcapacity_test} />
+              <ParkingCounter
+                available={parking.fields.availablecapacity}
+                total={parking.fields.totalcapacity_test}
+              />
             </Card.Aside>
           </Card>
         )}

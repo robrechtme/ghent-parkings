@@ -1,9 +1,20 @@
 
 module.exports = {
+  plugins: [
+    "@typescript-eslint",
+    "eslint-comments",
+    "jest",
+    "promise",
+    "unicorn",
+  ],
   extends: [
     'airbnb-typescript',
+    "plugin:@typescript-eslint/recommended",
+    "plugin:eslint-comments/recommended",
+    "plugin:promise/recommended",
+    "prettier",
+    "prettier/react",
     "prettier/@typescript-eslint",
-    "plugin:prettier/recommended"
   ],
   ignorePatterns: [".*.js", "*.config.js"],
   parserOptions: {

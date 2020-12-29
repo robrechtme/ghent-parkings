@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from './ParkingCounter.module.css';
 import cx from 'classnames';
+import styles from './ParkingCounter.module.css';
 
 type Props = {
   available: number;
@@ -20,7 +20,10 @@ const ParkingCounter: React.FC<Props> = ({ available, total }) => {
   }
   return (
     <div className={styles.ParkingCounter}>
-      <span className={cx(className, styles.counter)}>{available}</span> / {total}
+      <span className={cx(className, styles.counter)}>{available}</span>
+      {' '}
+      /
+      {total}
       <div className={styles.legend}>available / total</div>
     </div>
   );
