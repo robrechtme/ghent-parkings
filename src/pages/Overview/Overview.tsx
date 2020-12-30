@@ -29,9 +29,8 @@ const Overview: React.FC<RouteComponentProps> = () => {
           <>
             <MapContainer className={styles.mapContainer} center={[51.049999, 3.733333]} zoom={14}>
               <TileLayer
-                maxZoom={20}
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
               {parkings.map(parking => (
                 <Marker

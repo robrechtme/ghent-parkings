@@ -77,9 +77,8 @@ const Details: React.FC<RouteComponentProps<Props>> = ({ match }) => {
               />
               <MapContainer className={styles.mapContainer} center={[parking.geometry.coordinates[1], parking.geometry.coordinates[0]]} zoom={16}>
                 <TileLayer
-                  maxZoom={20}
                   attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                  url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
                 <Marker
                   position={[parking.geometry.coordinates[1], parking.geometry.coordinates[0]]}
