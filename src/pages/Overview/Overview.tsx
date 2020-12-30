@@ -29,8 +29,9 @@ const Overview: React.FC<RouteComponentProps> = () => {
           <>
             <MapContainer className={styles.mapContainer} center={[51.049999, 3.733333]} zoom={14}>
               <TileLayer
+                maxZoom={20}
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
               />
               {parkings.map(parking => (
                 <Marker
@@ -46,7 +47,11 @@ const Overview: React.FC<RouteComponentProps> = () => {
                   <Popup minWidth={200}>
                     <Card.Content>
                       <Card.ContentHeader>{parking.fields.name}</Card.ContentHeader>
-                      <p>{parking.fields.address}</p>
+                      <p>
+                        {parking.fields.address}
+                        <br />
+                        <a href={`https://www.google.com/maps/dir/?api=1&travelmode=driving&destination=${parking.geometry.coordinates[1]},${parking.geometry.coordinates[0]}`} target="_blank" rel="noreferrer">Directions</a>
+                      </p>
                       <div>
                         <Link to={`/p/${parking.fields.id}`}>Details</Link>
                       </div>
@@ -57,7 +62,7 @@ const Overview: React.FC<RouteComponentProps> = () => {
               ))}
             </MapContainer>
             {sortBy(parkings, 'fields.name').map((record) => (
-              <ParkingCard key={record.fields.id} parking={record.fields} />
+              <ParkingCard key={record.fields.id} parking={record} />
             ))}
           </>
         }

@@ -45,7 +45,11 @@ const Details: React.FC<RouteComponentProps<Props>> = ({ match }) => {
             <Card.Content>
               <Card.ContentHeader>{parking.fields.name}</Card.ContentHeader>
               <h4>Address</h4>
-              <p>{parking.fields.address}</p>
+              <p>
+                {parking.fields.address}
+                <br />
+                <a href={`https://www.google.com/maps/dir/?api=1&travelmode=driving&destination=${parking.geometry.coordinates[1]},${parking.geometry.coordinates[0]}`} target="_blank" rel="noreferrer">Directions</a>
+              </p>
               <h4>Contact information</h4>
               <p>{parking.fields.contactinfo}</p>
               <h4>Opening hours</h4>
@@ -73,8 +77,9 @@ const Details: React.FC<RouteComponentProps<Props>> = ({ match }) => {
               />
               <MapContainer className={styles.mapContainer} center={[parking.geometry.coordinates[1], parking.geometry.coordinates[0]]} zoom={16}>
                 <TileLayer
+                  maxZoom={20}
                   attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
                 />
                 <Marker
                   position={[parking.geometry.coordinates[1], parking.geometry.coordinates[0]]}

@@ -2,11 +2,14 @@
   margin: 1rem 0;
 }
 
-.parkButton,
-.parkButton {
+.buttonContainer {
+  margin: 2rem 0 0;
+}
+
+.button,
+.button {
   background: var(--accent);
   padding: 0.5em 0.8em;
-  margin: 1rem 0 0;
   color: white;
   cursor: pointer;
   font-weight: var(--text-bold);
@@ -16,8 +19,9 @@
   box-shadow: var(--shadow-1);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   outline: none;
+  text-decoration: none;
 }
 
-.parkButton:hover {
+.button:hover {
   box-shadow: var(--shadow-2);
 }
