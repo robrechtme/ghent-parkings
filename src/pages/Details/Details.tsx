@@ -3,6 +3,8 @@ import { RouteComponentProps } from 'react-router-dom';
 import DocumentTitle from 'react-document-title';
 import { MapContainer, Marker, TileLayer } from 'react-leaflet';
 import L from 'leaflet';
+import { useTranslation } from 'react-i18next';
+
 import styles from './Details.module.css';
 import Card from '../../components/Card/Card';
 import useParkings from '../../hooks/useParkings';
@@ -25,34 +27,35 @@ const Details: React.FC<RouteComponentProps<Props>> = ({ match }) => {
   } = useParkings(id);
   const parking = data && data[0];
 
+  const { t } = useTranslation();
+
   if (!isLoading && !error && !parking) {
-    return <ErrorPage message="This page does not exist." details={`Parking with id "${id}" not found.`} />;
+    return <ErrorPage message={t('notFound.title')} details={t('notFound.message', { id })} />;
   }
 
-  const title = !isLoading && !error ? `${parking.fields.name} | Ghent Parkings` : 'Ghent Parkings';
+  const title = !isLoading && !error ? `${parking.fields.name} | ${t('title')}` : t('title');
   const openingtimes = !isLoading && !error ? JSON.parse(parking.fields.newopeningtimes) : null;
   return (
     <DocumentTitle title={title}>
       <Layout backButtonURL="/">
         <HeaderWithSpinner loading={isValidating}>
-          Parkings
-          {' '}
-          {!isLoading && !error && `- ${parking.fields.name}`}
+          {t('detail.title')}
+          {!isLoading && !error && ` - ${parking.fields.name}`}
         </HeaderWithSpinner>
         {error && <ErrorMessage details={error.toString()} />}
         {!isLoading && !error && (
           <Card className={styles.card}>
             <Card.Content>
               <Card.ContentHeader>{parking.fields.name}</Card.ContentHeader>
-              <h4>Address</h4>
+              <h4>{t('detail.address')}</h4>
               <p>
                 {parking.fields.address}
                 <br />
                 <a href={`https://www.google.com/maps/dir/?api=1&travelmode=driving&destination=${parking.geometry.coordinates[1]},${parking.geometry.coordinates[0]}`} target="_blank" rel="noreferrer">Directions</a>
               </p>
-              <h4>Contact information</h4>
+              <h4>{t('detail.contactInfo')}</h4>
               <p>{parking.fields.contactinfo}</p>
-              <h4>Opening hours</h4>
+              <h4>{t('detail.openingtimes')}</h4>
               <table>
                 <tbody>
                   {openingtimes.days.map((day: string) => (

@@ -1,5 +1,6 @@
 .container {
   padding: 1rem;
+  padding-top: 0;
   max-width: 1000px;
   min-width: 300px;
   margin: auto;
@@ -7,23 +8,55 @@
 }
 
 .footer {
+  font-size: 0.85em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  max-width: 1000px;
+  min-width: 300px;
   margin: auto;
-  font-size: 0.8em;
-  text-align: center;
 }
-.footer a {
-  color: inherit;
+
+footer a {
   text-decoration: none;
 }
 
 .footerIcon {
   height: 1em;
 }
+.footerLang {
+  font-size: 0.85em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: none;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  background: unset;
+  color: inherit;
+  cursor: pointer;
+  text-align: center;
+}
+.footerLang:focus {
+  outline: none;
+}
+.footerGlobe {
+  height: 1.5em;
+  margin-right: 0.25em;
+}
 
 .backButton {
   color: white;
   text-decoration: none;
 }
+
+.backbuttonFiller {
+  height: 1.6em;
+}
+
 .backButtonIcon {
   display: inline-block;
   width: 1em;
