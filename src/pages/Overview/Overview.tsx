@@ -52,7 +52,7 @@ const Overview: React.FC<RouteComponentProps> = () => {
                       <p>
                         {parking.fields.address}
                         <br />
-                        <a href={`https://www.google.com/maps/dir/?api=1&travelmode=driving&destination=${parking.geometry.coordinates[1]},${parking.geometry.coordinates[0]}`} target="_blank" rel="noreferrer">Directions</a>
+                        <a href={`https://www.google.com/maps/dir/?api=1&travelmode=driving&destination=${parking.geometry.coordinates[1]},${parking.geometry.coordinates[0]}`} target="_blank" rel="noreferrer">{t('directions')}</a>
                       </p>
                       <div>
                         <Link to={`/p/${parking.fields.id}`}>{t('details')}</Link>

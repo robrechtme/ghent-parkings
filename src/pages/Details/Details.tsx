@@ -51,7 +51,7 @@ const Details: React.FC<RouteComponentProps<Props>> = ({ match }) => {
               <p>
                 {parking.fields.address}
                 <br />
-                <a href={`https://www.google.com/maps/dir/?api=1&travelmode=driving&destination=${parking.geometry.coordinates[1]},${parking.geometry.coordinates[0]}`} target="_blank" rel="noreferrer">Directions</a>
+                <a href={`https://www.google.com/maps/dir/?api=1&travelmode=driving&destination=${parking.geometry.coordinates[1]},${parking.geometry.coordinates[0]}`} target="_blank" rel="noreferrer">{t('directions')}</a>
               </p>
               <h4>{t('detail.contactInfo')}</h4>
               <p>{parking.fields.contactinfo}</p>
