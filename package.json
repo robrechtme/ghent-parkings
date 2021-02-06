@@ -7,7 +7,7 @@
     "@types/classnames": "^2.2.10",
     "@types/jest": "^26.0.5",
     "@types/lodash-es": "^4.17.3",
-    "@types/node": "^14.14.22",
+    "@types/node": "^14.14.25",
     "@types/react": "^17.0.0",
     "@types/react-document-title": "^2.0.4",
     "@types/react-dom": "^17.0.0",
