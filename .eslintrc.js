@@ -13,8 +13,6 @@ module.exports = {
     "plugin:eslint-comments/recommended",
     "plugin:promise/recommended",
     "prettier",
-    "prettier/react",
-    "prettier/@typescript-eslint",
   ],
   ignorePatterns: [".*.js", "*.config.js"],
   parserOptions: {
