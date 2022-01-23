@@ -1,7 +1,7 @@
 import React from 'react';
 import { sortBy } from 'lodash-es';
 import DocumentTitle from 'react-document-title';
-import { Link, RouteComponentProps } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import { Trans, useTranslation } from 'react-i18next';
@@ -15,7 +15,7 @@ import Card from '../../components/Card/Card';
 import ParkingCounter from '../../components/ParkingCounter/ParkingCounter';
 import getCapacityColor from '../../helpers/capacityColor';
 
-const Overview: React.FC<RouteComponentProps> = () => {
+const Overview: React.FC = () => {
   const { data: parkings, isLoading, error, isValidating } = useParkings();
   const { t } = useTranslation();
   return (

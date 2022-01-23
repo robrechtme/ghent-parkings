@@ -6,10 +6,7 @@ type Props = {
   details?: React.ReactNode;
 };
 
-const ErrorMessage: React.FC<Props> = ({
-  message,
-  details,
-}) => {
+const ErrorMessage: React.FC<Props> = ({ message, details }) => {
   const { t } = useTranslation();
   return (
     <div>

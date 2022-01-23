@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Overview from '../pages/Overview/Overview';
 import Details from '../pages/Details/Details';
@@ -10,11 +10,11 @@ const App: React.FC = () => {
   const { t } = useTranslation();
   return (
     <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={Overview} />
-        <Route path="/p/:id" component={Details} />
-        <Route render={() => <ErrorPage message={t('notFound.title')} />} />
-      </Switch>
+      <Routes>
+        <Route index element={<Overview />} />
+        <Route path="/p/:id" element={<Details />} />
+        <Route element={<ErrorPage message={t('notFound.title')} />} />
+      </Routes>
     </BrowserRouter>
   );
 };

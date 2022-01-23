@@ -1,5 +1,4 @@
 import React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
 import DocumentTitle from 'react-document-title';
 import { MapContainer, Marker, TileLayer } from 'react-leaflet';
 import L from 'leaflet';
@@ -14,13 +13,10 @@ import Layout from '../../components/Layout/Layout';
 import ErrorPage from '../ErrorPage/ErrorPage';
 import HeaderWithSpinner from '../../components/HeaderWithSpinner/HeaderWithSpinner';
 import getCapacityColor from '../../helpers/capacityColor';
+import { useParams } from 'react-router-dom';
 
-type Props = {
-  id: string;
-};
-
-const Details: React.FC<RouteComponentProps<Props>> = ({ match }) => {
-  const { id } = match.params;
+const Details: React.FC = () => {
+  const { id } = useParams();
   const { data, isLoading, error, isValidating } = useParkings(id);
   const parking = data && data[0];
 

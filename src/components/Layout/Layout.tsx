@@ -24,12 +24,23 @@ const Layout: React.FC<Props> = ({ children, backButtonURL, backButtonText }) =>
             </span>
             {backButtonText || t('back')}
           </Link>
-        ) : <div className={styles.backbuttonFiller} />}
+        ) : (
+          <div className={styles.backbuttonFiller} />
+        )}
         {children}
       </div>
       <footer className={styles.footer}>
-        <div>{t('footer')} <a href="https://github.com/robrechtme/ghent-parkings" target="_blank" rel="noreferrer"><GitHubIcon className={styles.footerIcon} /> GitHub</a></div>
-        <button type="button" className={styles.footerLang} onClick={() => i18n.changeLanguage(i18n.language === 'nl' ? 'en' : 'nl')}>
+        <div>
+          {t('footer')}{' '}
+          <a href="https://github.com/robrechtme/ghent-parkings" target="_blank" rel="noreferrer">
+            <GitHubIcon className={styles.footerIcon} /> GitHub
+          </a>
+        </div>
+        <button
+          type="button"
+          className={styles.footerLang}
+          onClick={() => i18n.changeLanguage(i18n.language === 'nl' ? 'en' : 'nl')}
+        >
           <GlobeIcon className={styles.footerGlobe} /> {t('switchLang')}
         </button>
       </footer>

@@ -15,10 +15,7 @@ const ParkingCounter: React.FC<Props> = ({ available, total }) => {
   const { t } = useTranslation();
   return (
     <div className={styles.ParkingCounter}>
-      <span className={cx(styles[color], styles.counter)}>{available}</span>
-      {' '}
-      /
-      {total}
+      <span className={cx(styles[color], styles.counter)}>{available}</span> /{total}
       <div className={styles.legend}>{t('ratio')}</div>
     </div>
   );
