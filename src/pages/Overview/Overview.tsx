@@ -22,16 +22,18 @@ const Overview: React.FC = () => {
     <DocumentTitle title={t('title')}>
       <Layout>
         <HeaderWithSpinner loading={isValidating}>{t('title')}</HeaderWithSpinner>
-        <Trans parent="p" i18nKey="description" t={t}>
-          Realtime bezetting van de parkeergarages in Gent. Mogelijk gemaakt dankzij het{' '}
-          <a
-            href="https://data.stad.gent/explore/dataset/bezetting-parkeergarages-real-time/information/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Gent Open Data Portaal
-          </a>
-        </Trans>
+        <Trans
+          parent="p"
+          i18nKey="description"
+          t={t}
+          components={[
+            <a
+              href="https://data.stad.gent/explore/dataset/bezetting-parkeergarages-real-time/information/"
+              target="_blank"
+              rel="noreferrer"
+            />,
+          ]}
+        />
         {error && <ErrorMessage details={error.toString()} />}
         {!isLoading && !error && (
           <>

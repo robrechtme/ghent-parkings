@@ -2,7 +2,7 @@ export default {
   translation: {
     title: 'Parking Gent',
     description:
-      'Realtime bezetting van de parkeergarages in Gent. Mogelijk gemaakt dankzij het <a>Gent Open Data Portaal</a>.',
+      'Realtime bezetting van de parkeergarages in Gent. Mogelijk gemaakt dankzij het <0>Gent Open Data Portaal</0>.',
     details: 'Details',
     back: 'Terug',
     directions: 'Routebeschrijving',

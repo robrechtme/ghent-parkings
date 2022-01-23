@@ -2,7 +2,7 @@ export default {
   translation: {
     title: 'Parkings Ghent',
     description:
-      'Realtime occupation of the Ghent public parking garages. Made possible thanks to the <1>Ghent Open Data Portal</1>.',
+      'Realtime occupation of the Ghent public parking garages. Made possible thanks to the <0>Ghent Open Data Portal</0>.',
     details: 'Details',
     back: 'Back',
     directions: 'Directions',
