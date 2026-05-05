@@ -1,10 +1,9 @@
-import React from 'react';
-import { ReactComponent as SVG } from '../../assets/tail-spin.svg';
+import SpinnerIcon from '../../icons/SpinnerIcon';
 import styles from './Spinner.module.css';
 
-const Spinner: React.FC = () => (
+const Spinner = () => (
   <div className={styles.Spinner}>
-    <SVG />
+    <SpinnerIcon />
   </div>
 );
 

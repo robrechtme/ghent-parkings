@@ -1,13 +1,15 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
+'use client';
+
+import { useTranslations } from 'next-intl';
+import type { ReactNode } from 'react';
 
 type Props = {
-  message?: React.ReactNode;
-  details?: React.ReactNode;
+  message?: ReactNode;
+  details?: ReactNode;
 };
 
-const ErrorMessage: React.FC<Props> = ({ message, details }) => {
-  const { t } = useTranslation();
+const ErrorMessage = ({ message, details }: Props) => {
+  const t = useTranslations();
   return (
     <div>
       <p>{message || t('errorMessage')}</p>

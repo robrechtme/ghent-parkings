@@ -1,0 +1,23 @@
+{
+  "title": "Parkhäuser Gent",
+  "description": "Echtzeit-Belegung der öffentlichen Parkhäuser in Gent. Ermöglicht durch das <link>Open-Data-Portal Gent</link>.",
+  "details": "Details",
+  "back": "Zurück",
+  "directions": "Wegbeschreibung",
+  "ratio": "frei / gesamt",
+  "errorPage": {
+    "title": "Ups!"
+  },
+  "errorMessage": "Etwas ist schiefgelaufen... Bitte aktualisieren Sie die Seite und versuchen Sie es erneut.",
+  "footer": "Quellcode auf ",
+  "notFound": {
+    "title": "Diese Seite existiert nicht.",
+    "message": "Parkhaus mit ID „{id}\" nicht gefunden."
+  },
+  "detail": {
+    "title": "Parkhaus",
+    "address": "Adresse",
+    "contactInfo": "Kontakt",
+    "openingtimes": "Öffnungszeiten"
+  }
+}

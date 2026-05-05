@@ -1,0 +1,23 @@
+{
+  "title": "Parkings Gand",
+  "description": "Occupation en temps réel des parkings publics de Gand. Rendu possible grâce au <link>Portail Open Data de Gand</link>.",
+  "details": "Détails",
+  "back": "Retour",
+  "directions": "Itinéraire",
+  "ratio": "libre / total",
+  "errorPage": {
+    "title": "Oops !"
+  },
+  "errorMessage": "Une erreur est survenue... Veuillez réessayer en rafraîchissant la page.",
+  "footer": "Voir sur ",
+  "notFound": {
+    "title": "Cette page n'existe pas.",
+    "message": "Parking avec l'identifiant « {id} » introuvable."
+  },
+  "detail": {
+    "title": "Parking",
+    "address": "Adresse",
+    "contactInfo": "Coordonnées",
+    "openingtimes": "Heures d'ouverture"
+  }
+}

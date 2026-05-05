@@ -1,18 +1,18 @@
-import React from 'react';
+'use client';
+
 import cx from 'classnames';
-import { useTranslation } from 'react-i18next';
+import { useTranslations } from 'next-intl';
+import getCapacityColor from '@/helpers/capacityColor';
 import styles from './ParkingCounter.module.css';
-import getCapacityColor from '../../helpers/capacityColor';
 
 type Props = {
   available: number;
   total: number;
 };
 
-const ParkingCounter: React.FC<Props> = ({ available, total }) => {
-  // Set color based on availability ratio
+const ParkingCounter = ({ available, total }: Props) => {
   const color = getCapacityColor(available / total);
-  const { t } = useTranslation();
+  const t = useTranslations();
   return (
     <div className={styles.ParkingCounter}>
       <span className={cx(styles[color], styles.counter)}>{available}</span> /{total}

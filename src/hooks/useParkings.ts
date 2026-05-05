@@ -1,25 +1,34 @@
+'use client';
+
 import useSWR from 'swr';
-import fetcher from '../api/fetcher';
-import { DataLoader } from '../types/dataLoader';
-import { ParkingRecord } from '../types/parking';
+import { buildParkingsUrl } from '../api/parkings';
+import type { ParkingRecord } from '../types/parking';
 
-const useParkings = (id?: string): DataLoader<ParkingRecord[]> => {
-  let endpoint = `${process.env.REACT_APP_API}/?dataset=bezetting-parkeergarages-real-time&q=&facet=description`;
-  if (id) {
-    endpoint += `&refine.id=${id}`;
+const fetcher = async (url: string): Promise<ParkingRecord[]> => {
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error(`Parkings API responded ${res.status}`);
   }
+  const data = (await res.json()) as { records: ParkingRecord[] };
+  return data.records;
+};
 
-  const { data, error, isValidating } = useSWR(endpoint, fetcher, {
-    refreshInterval: 5 * 60 * 1000, // Poll every 5 mins.
-    focusThrottleInterval: 5 * 60 * 1000, // Only revalidate after 5 mins.
-  });
+type Options = {
+  fallbackData?: ParkingRecord[];
+};
 
-  return {
-    data: data && data.records,
-    isLoading: !error && !data,
-    isValidating,
-    error,
-  };
+const useParkings = (id?: string, { fallbackData }: Options = {}) => {
+  const { data, error, isLoading, isValidating } = useSWR<ParkingRecord[], Error>(
+    buildParkingsUrl(id),
+    fetcher,
+    {
+      refreshInterval: 5 * 60 * 1000,
+      focusThrottleInterval: 5 * 60 * 1000,
+      fallbackData,
+    },
+  );
+
+  return { data, isLoading, isValidating, error };
 };
 
 export default useParkings;

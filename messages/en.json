@@ -1,0 +1,23 @@
+{
+  "title": "Parkings Ghent",
+  "description": "Realtime occupation of the Ghent public parking garages. Made possible thanks to the <link>Ghent Open Data Portal</link>.",
+  "details": "Details",
+  "back": "Back",
+  "directions": "Directions",
+  "ratio": "free / total",
+  "errorPage": {
+    "title": "Oops!"
+  },
+  "errorMessage": "Something went wrong... Please try again by refreshing the page.",
+  "footer": "See on ",
+  "notFound": {
+    "title": "This page does not exist.",
+    "message": "Parking with id \"{id}\" not found."
+  },
+  "detail": {
+    "title": "Parking",
+    "address": "Address",
+    "contactInfo": "Contact info",
+    "openingtimes": "Opening hours"
+  }
+}

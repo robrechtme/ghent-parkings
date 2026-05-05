@@ -1,26 +1,37 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+'use client';
+
+import { useLocale, useTranslations } from 'next-intl';
+import type { ChangeEvent, ReactNode } from 'react';
+import { Link, usePathname, useRouter } from '@/i18n/navigation';
+import { type Locale, localeNames, routing } from '@/i18n/routing';
+import BackIcon from '@/icons/BackIcon';
+import GitHubIcon from '@/icons/GitHubIcon';
+import GlobeIcon from '@/icons/GlobeIcon';
 import styles from './Layout.module.css';
-import { ReactComponent as Back } from '../../assets/back.svg';
-import { ReactComponent as GitHubIcon } from '../../assets/github.svg';
-import { ReactComponent as GlobeIcon } from '../../assets/globe.svg';
 
 type Props = {
+  children: ReactNode;
   backButtonURL?: string;
   backButtonText?: string;
 };
 
-const Layout: React.FC<Props> = ({ children, backButtonURL, backButtonText }) => {
-  const { t, i18n } = useTranslation();
+const Layout = ({ children, backButtonURL, backButtonText }: Props) => {
+  const t = useTranslations();
+  const locale = useLocale();
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const handleLocaleChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    router.replace(pathname, { locale: event.target.value as Locale });
+  };
 
   return (
     <>
       <div className={styles.container}>
         {backButtonURL ? (
-          <Link to={backButtonURL} className={styles.backButton}>
+          <Link href={backButtonURL} className={styles.backButton}>
             <span className={styles.backButtonIcon}>
-              <Back />
+              <BackIcon />
             </span>
             {backButtonText || t('back')}
           </Link>
@@ -36,13 +47,21 @@ const Layout: React.FC<Props> = ({ children, backButtonURL, backButtonText }) =>
             <GitHubIcon className={styles.footerIcon} /> GitHub
           </a>
         </div>
-        <button
-          type="button"
-          className={styles.footerLang}
-          onClick={() => i18n.changeLanguage(i18n.language === 'nl' ? 'en' : 'nl')}
-        >
-          <GlobeIcon className={styles.footerGlobe} /> {t('switchLang')}
-        </button>
+        <div className={styles.localePicker}>
+          <GlobeIcon className={styles.footerGlobe} aria-hidden="true" />
+          <select
+            aria-label="Language"
+            value={locale}
+            onChange={handleLocaleChange}
+            className={styles.localeSelect}
+          >
+            {routing.locales.map((l) => (
+              <option key={l} value={l}>
+                {localeNames[l]}
+              </option>
+            ))}
+          </select>
+        </div>
       </footer>
     </>
   );
